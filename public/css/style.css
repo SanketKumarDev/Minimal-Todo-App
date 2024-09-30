@@ -1,0 +1,86 @@
+/* Minimalist Design Styles */
+body {
+  background-color: #f4f4f9;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #333;
+  padding: 20px;
+}
+
+h4, h1 {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: normal;
+  color: #222;
+}
+
+.modal-header {
+  background-color: #ffffff;
+  color: #333;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.btn-secondary, .btn-danger {
+  width: 100%;
+  padding: 10px;
+  font-size: 1em;
+  border-radius: 5px;
+}
+
+.btn-secondary {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  color: #333;
+}
+
+.btn-secondary:hover {
+  background-color: #e0e0e0;
+}
+
+.btn-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.btn-danger:hover {
+  background-color: #f1b0b7;
+}
+
+.form-control, .form-select {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1em;
+  background-color: #fafafa;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #ccc;
+  box-shadow: none;
+}
+
+.form-check-label {
+  font-size: 1em;
+  font-weight: normal;
+  color: #555;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-color: #eee;
+}
+
+.modal-footer {
+  padding: 0.5rem;
+  border-top: none;
+}
+
+@media (max-width: 768px) {
+  h4 {
+    font-size: 1.2rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+}

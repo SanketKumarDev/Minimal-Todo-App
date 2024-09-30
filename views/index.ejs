@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Minimal Todo App</title>
+  <link rel="icon" type="image/svg+xml" href="https://cdn-icons-png.freepik.com/256/14991/14991735.png?semt=ais_hybrid">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="/css/style.css"> <!-- Link to minimalist CSS -->
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- Minimalist Header -->
+    <div class="row justify-content-center">
+      <div class="col-md-8 text-center">
+        <h4 class="mt-3">Minimal Todo App</h4>
+      </div>
+    </div>
+
+    <!-- Todo Form -->
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-8">
+        <div class="modal-dialog">
+          <div class="modal-content border-0 shadow-sm">
+            <div class="modal-header">
+              <h5 class="modal-title">New Task</h5>
+            </div>
+            <div class="modal-body">
+              <form action="/tasks" method="post">
+                <div class="mb-3">
+                  <label for="description" class="form-label">Task Description</label>
+                  <input type="text" class="form-control" id="description" name="description" placeholder="Enter description" required>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="category" class="form-label">Category</label>
+                      <select class="form-select" name="category" required>
+                        <option value="" selected disabled>Choose</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Work">Work</option>
+                        <option value="School">School</option>
+                        <option value="College">College</option>
+                        <option value="Office">Office</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="date" class="form-label">Due Date</label>
+                      <input type="date" class="form-control" id="date" name="date" required>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                  <button class="btn btn-secondary">Add Task</button>
+              </form>
+              <button id="submit-button" class="btn btn-danger mt-3">Delete Tasks</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Todo List Display -->
+    <div class="row d-flex justify-content-center mt-4">
+      <div class="col-md-8">
+        <form id="contact-form" action="/delete" method="post">
+          <% const categoryColors={ 'Personal': '#a4b8c4', 'Work': '#b5c0c7', 'School': '#d4d9df', 'College': '#e0e4e8', 'Office': '#f2f4f5' }; %>
+          <% if (tasks.length > 0) { %>
+            <h1 class="text-center mb-4">Tasks</h1>
+            <% tasks.forEach((task) => { %>
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="form-check d-flex align-items-center">
+                  <input class="form-check-input me-3" type="checkbox" name="<%= task._id %>">
+                  <div>
+                    <h5 class="form-check-label">
+                      <%= task.description %>
+                    </h5>
+                    <span class="fs-6 text-muted">
+                      <i class="bi bi-calendar-week me-2"></i> <%= task.dueDate.toISOString().substring(0, 10) %>
+                    </span>
+                  </div>
+                </div>
+                <div>
+                  <button class="btn py-1 px-3 <%= task.category.toLowerCase() %>" style="border: none;">
+                    <%= task.category %>
+                  </button>
+                </div>
+              </div>
+              <hr>
+            <% }); %>
+          <% } else { %>
+            <h3 class="text-center">No Tasks Available</h3>
+          <% } %>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const submitButton = document.getElementById("submit-button");
+      const contactForm = document.getElementById("contact-form");
+
+      submitButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        contactForm.submit();
+      });
+    });
+  </script>
+</body>
+
+</html>
